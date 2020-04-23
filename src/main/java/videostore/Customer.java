@@ -5,8 +5,12 @@ import java.util.LinkedList;
 
 public class Customer 
 {
+
+	private final StatementFormatter statementFormatter;
+
 	public Customer (String name) {
 		this.name = name;
+		statementFormatter = new StatementFormatter();
 	}
 	
 	public void addRental (Rental rental) {
@@ -22,7 +26,7 @@ public class Customer
 				.mapToDouble(Rental::amount)
 				.sum();
 
-		return new StatementFormatter().format(rentals, name, frequentRenterPoints, totalAmount);
+		return statementFormatter.format(rentals, name, frequentRenterPoints, totalAmount);
 	}
 
 
