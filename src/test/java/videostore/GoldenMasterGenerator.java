@@ -27,7 +27,8 @@ public class GoldenMasterGenerator {
     }
 
     public void writeGoldenMasterFile(String result) throws IOException {
-        Files.writeString(GOLDEN_MASTER_FILE_PATH, result, StandardOpenOption.CREATE);
+        Files.deleteIfExists(GOLDEN_MASTER_FILE_PATH);
+        Files.writeString(GOLDEN_MASTER_FILE_PATH, result, StandardOpenOption.CREATE_NEW);
     }
 
 }
