@@ -20,13 +20,11 @@ public class Customer
 	}
 	
 	public String statement () {
-		double 				totalAmount 			= 0;
 		int					frequentRenterPoints 	= 0;
 		String 				result 					= "Rental Record for " + getName () + "\n";
 		
 		for(var rental : rentals) {
 			double thisAmount = rental.amount();
-			totalAmount += thisAmount;
 
 			result += "\t" + rental.getMovie ().getTitle () + "\t"
 					+ thisAmount + "\n";
@@ -36,6 +34,10 @@ public class Customer
 					&& rental.getDaysRented() > 1) {frequentRenterPoints+=1;}
 
 		}
+		
+		double totalAmount = rentals.stream()
+				.map(Rental::amount)
+				.reduce(0.0, Double::sum);
 		
 		result += "You owed " + totalAmount + "\n";
 		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
