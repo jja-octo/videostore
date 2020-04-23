@@ -20,14 +20,14 @@ public class Customer
 	}
 	
 	public String statement () {
-		int					frequentRenterPoints 	= 0;
-		String 				result 					= "Rental Record for " + getName () + "\n";
+		int frequentRenterPoints = 0;
+		var result = new StringBuilder("Rental Record for " + getName() + "\n");
 		
 		for(var rental : rentals) {
 			double thisAmount = rental.amount();
 
-			result += "\t" + rental.getMovie ().getTitle () + "\t"
-					+ thisAmount + "\n";
+			result.append("\t" + rental.getMovie ().getTitle () + "\t"
+					+ thisAmount + "\n");
 
 			frequentRenterPoints+=1;
 			if (rental.getMovie ().getPricing() == NEW_RELEASE
@@ -39,11 +39,11 @@ public class Customer
 				.map(Rental::amount)
 				.reduce(0.0, Double::sum);
 		
-		result += "You owed " + totalAmount + "\n";
-		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
+		result.append("You owed " + totalAmount + "\n");
+		result.append("You earned " + frequentRenterPoints + " frequent renter points\n");
 		
 		
-		return result;
+		return result.toString();
 	}
 
 	private String name;
