@@ -2,14 +2,12 @@ package videostore;
 
 import videostore.movie.Movie;
 
-import static videostore.Pricing.NEW_RELEASE;
-
 public class Rental
 {
 	public Rental (Movie movie, int daysRented) {
 		this.movie 		= movie;
 		this.daysRented = daysRented;
-		this.amount = getPricing().rentalAmount(getDaysRented());
+		this.amount = this.getMovie().rentalAmount(getDaysRented());
 	}
 
 	public int getDaysRented () {
@@ -25,21 +23,7 @@ public class Rental
 	}
 	
 	public int frequentRenterPoints() {
-		int renterPoints;
-		if (isNewRelease() && getDaysRented() > 1) {
-			renterPoints = 2;
-		} else {
-			renterPoints = 1;
-		}
-		return renterPoints;
-	}
-
-	private boolean isNewRelease() {
-		return getPricing() == NEW_RELEASE;
-	}
-
-	private Pricing getPricing() {
-		return this.getMovie().getPricing();
+		return movie.frequentRenterPoints(daysRented);
 	}
 
 	private final double amount;

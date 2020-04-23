@@ -2,6 +2,8 @@ package videostore.movie;
 
 import videostore.Pricing;
 
+import static videostore.Pricing.NEW_RELEASE;
+
 public abstract class Movie
 {
     private final String title;
@@ -25,6 +27,20 @@ public abstract class Movie
 		}
 	}
 
+	public double rentalAmount(int daysRented) {
+		return pricing.rentalAmount(daysRented);
+	}
+	
+	public int frequentRenterPoints(int daysRented) {
+		int renterPoints;
+		if (this.getPricing() == NEW_RELEASE && daysRented > 1) {
+			renterPoints = 2;
+		} else {
+			renterPoints = 1;
+		}
+		return renterPoints;
+	}
+	
 	public Pricing getPricing() {
 		return pricing;
 	}
