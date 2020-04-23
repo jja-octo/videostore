@@ -23,8 +23,8 @@ public class Customer
 				.sum();
 
 		double totalAmount = rentals.stream()
-				.map(Rental::amount)
-				.reduce(0.0, Double::sum);
+				.mapToDouble(Rental::amount)
+				.sum();
 
 		return formattedStatement(frequentRenterPoints, totalAmount);
 	}
