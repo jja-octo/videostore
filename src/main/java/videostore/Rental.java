@@ -16,8 +16,8 @@ public class Rental
 	}
 	
 	public double amount() {
-		double amountToAdd = 0;
 		int daysRented = getDaysRented();
+		double amountToAdd = 0;
 		switch (getMovie ().getPricing()) {
 			case REGULAR:
 				amountToAdd = computeAmountRegular(daysRented);
@@ -32,7 +32,7 @@ public class Rental
 		return amountToAdd;
 	}
 
-	private double computeAmountChildren(int daysRented) {
+	private static double computeAmountChildren(int daysRented) {
 		double amountToAdd;
 		double childrenBasePrice = 1.5;
 		int childrenDaysPenalty = 3;
@@ -42,7 +42,7 @@ public class Rental
 		return amountToAdd;
 	}
 
-	private double computeAmountNewRelease(int daysRented) {
+	private static double computeAmountNewRelease(int daysRented) {
 		double amountToAdd;
 		double newReleaseBasePrice = 0;
 		int newReleaseDaysPenalty = 0;
@@ -52,7 +52,7 @@ public class Rental
 		return amountToAdd;
 	}
 
-	private double computeAmountRegular(int daysRented) {
+	private static double computeAmountRegular(int daysRented) {
 		double amountToAdd;
 		int regularBasePrice = 2;
 		int regularDaysPenalty = 2;
