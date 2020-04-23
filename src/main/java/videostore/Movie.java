@@ -2,24 +2,36 @@ package videostore;
 
 public class Movie
 {
-	public static final int CHILDRENS	= 2;
-	public static final int REGULAR 	= 0;
-	public static final int NEW_RELEASE = 1;
+    public enum Pricing {
+        REGULAR(0),
+        NEW_RELEASE(1),
+        CHILDRENS(2),
+        ;
+
+        private final int code;
+
+        Pricing(int code) {
+            this.code = code;
+        }
+        public String code() {
+            return String.valueOf(code);
+        }
+    } 
 	
 	private String title;
-	private int priceCode;
+	private Pricing pricing;
 	
-	public Movie (String title, int priceCode) {
+	public Movie (String title, Pricing pricing) {
 		this.title 		= title;
-		this.priceCode 	= priceCode;
+		this.pricing = pricing;
 	}
 	
-	public int getPriceCode () {
-		return priceCode;
+	public Pricing getPricing() {
+		return pricing;
 	}
 	
-	public void setPriceCode (int code) {
-		priceCode = code;
+	public void setPricing(Pricing code) {
+		pricing = code;
 	}
 	
 	public String getTitle () {

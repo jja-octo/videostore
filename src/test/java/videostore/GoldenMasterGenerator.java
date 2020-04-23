@@ -5,7 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.stream.IntStream;
+import java.util.List;
+
+import static videostore.Movie.Pricing.*;
 
 public class GoldenMasterGenerator {
     private static final Path GOLDEN_MASTER_FILE_PATH = Paths.get("./src/test/resources/goldenmaster.txt");
@@ -26,8 +28,8 @@ public class GoldenMasterGenerator {
 
     public String testedClassOutput() {
         var customer = new Customer("Fred");
-        IntStream.of(0, 1, 2).forEach(priceCode -> {
-            var movie = new Movie("2001: A Space Odyssey " + priceCode, priceCode);
+        List.of(REGULAR, NEW_RELEASE, CHILDRENS).forEach(pricing -> {
+            var movie = new Movie("2001: A Space Odyssey " + pricing.code(), pricing);
             for (var daysRented = 0; daysRented < 10; daysRented++) {
                 customer.addRental(new Rental(movie, daysRented));
             }

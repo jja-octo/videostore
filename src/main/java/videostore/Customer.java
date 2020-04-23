@@ -3,6 +3,8 @@ package videostore;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import static videostore.Movie.Pricing.NEW_RELEASE;
+
 public class Customer 
 {
 	public Customer (String name) {
@@ -26,16 +28,16 @@ public class Customer
 			double 		thisAmount = 0;
 			
 			// determines the amount for each line
-			switch (each.getMovie ().getPriceCode ()) {
-				case Movie.REGULAR:
+			switch (each.getMovie ().getPricing()) {
+				case REGULAR:
 					thisAmount += 2;
 					if (each.getDaysRented () > 2)
 						thisAmount += (each.getDaysRented () - 2) * 1.5;
 					break;
-				case Movie.NEW_RELEASE:
+				case NEW_RELEASE:
 					thisAmount += each.getDaysRented () * 3;
 					break;
-				case Movie.CHILDRENS:
+				case CHILDRENS:
 					thisAmount += 1.5;
 					if (each.getDaysRented () > 3)
 						thisAmount += (each.getDaysRented () - 3) * 1.5;
@@ -44,7 +46,7 @@ public class Customer
 			
 			frequentRenterPoints++;
 			
-			if (each.getMovie ().getPriceCode () == Movie.NEW_RELEASE 
+			if (each.getMovie ().getPricing() == NEW_RELEASE 
 					&& each.getDaysRented () > 1)
 				frequentRenterPoints++;
 				
