@@ -26,6 +26,10 @@ public class Customer
 				.map(Rental::amount)
 				.reduce(0.0, Double::sum);
 
+		return formattedStatement(frequentRenterPoints, totalAmount);
+	}
+
+	private String formattedStatement(int frequentRenterPoints, double totalAmount) {
 		var statement = new StringBuilder("Rental Record for " + getName() + "\n");
 		statement.append( rentals.stream()
 				.map(rental -> "\t" + rental.getMovie ().getTitle () + "\t"
