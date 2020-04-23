@@ -26,16 +26,15 @@ public class Customer
 		
 		for(var rental : rentals) {
 			double thisAmount = rental.amount();
-			
-			frequentRenterPoints++;
-			
-			if (rental.getMovie ().getPricing() == NEW_RELEASE 
-					&& rental.getDaysRented() > 1)
-				frequentRenterPoints++;
-				
-			result += "\t" + rental.getMovie ().getTitle () + "\t"
-								+ thisAmount + "\n";
 			totalAmount += thisAmount;
+
+			result += "\t" + rental.getMovie ().getTitle () + "\t"
+					+ thisAmount + "\n";
+
+			frequentRenterPoints+=1;
+			if (rental.getMovie ().getPricing() == NEW_RELEASE
+					&& rental.getDaysRented() > 1) {frequentRenterPoints+=1;}
+
 		}
 		
 		result += "You owed " + totalAmount + "\n";
