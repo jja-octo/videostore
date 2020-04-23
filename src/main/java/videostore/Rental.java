@@ -23,14 +23,14 @@ public class Rental
 	}
 	
 	public int frequentRenterPoints() {
-		int delta;
+		int renterPoints;
 		if (this.getMovie ().getPricing() == NEW_RELEASE
 							&& this.getDaysRented() > 1) {
-			delta = 2;
+			renterPoints = 2;
 		} else {
-			delta = 1;
+			renterPoints = 1;
 		}
-		return delta;
+		return renterPoints;
 	}
 
 	private final double amount;
