@@ -8,10 +8,20 @@ public class RegularMovie extends Movie {
     }
 
     @Override
-    public double rentalAmount(int daysRented) {
-        return pricing.rentalAmount(daysRented);
+    protected double basePrice() {
+        return 2;
     }
-    
+
+    @Override
+    protected int daysPenalty() {
+        return 2;
+    }
+
+    @Override
+    protected double dailyPrice() {
+        return 1.5;
+    }
+
     @Override
     public int frequentRenterPoints(int daysRented) {
         return 1;

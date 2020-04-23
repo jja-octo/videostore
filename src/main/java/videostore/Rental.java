@@ -7,7 +7,7 @@ public class Rental
 	public Rental (Movie movie, int daysRented) {
 		this.movie 		= movie;
 		this.daysRented = daysRented;
-		this.amount = this.getMovie().rentalAmount(getDaysRented());
+		this.amount = movie.rentalAmount(getDaysRented());
 	}
 
 	public int getDaysRented () {
