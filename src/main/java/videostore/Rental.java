@@ -20,30 +20,48 @@ public class Rental
 		int daysRented = getDaysRented();
 		switch (getMovie ().getPricing()) {
 			case REGULAR:
-				int regularBasePrice = 2;
-				int regularDaysPenalty = 2;
-				double regularDailyPrice = 1.5;
-				amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
-						regularDailyPrice);
+				amountToAdd = computeAmountRegular(daysRented);
 				break;
 			case NEW_RELEASE:
-				double newReleaseBasePrice = 0;
-				int newReleaseDaysPenalty = 0;
-				int newReleaseDailyPrice = 3;
-				amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
-						newReleaseDailyPrice);
+				amountToAdd = computeAmountNewRelease(daysRented);
 				break;
 			case CHILDREN:
-				double childrenBasePrice = 1.5;
-				int childrenDaysPenalty = 3;
-				double childrenDailyPrice = 1.5;
-				amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
-						childrenDailyPrice);
+				amountToAdd = computeAmountChildren(daysRented);
 				break;
 		}
 		return amountToAdd;
 	}
-	
+
+	private double computeAmountChildren(int daysRented) {
+		double amountToAdd;
+		double childrenBasePrice = 1.5;
+		int childrenDaysPenalty = 3;
+		double childrenDailyPrice = 1.5;
+		amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
+				childrenDailyPrice);
+		return amountToAdd;
+	}
+
+	private double computeAmountNewRelease(int daysRented) {
+		double amountToAdd;
+		double newReleaseBasePrice = 0;
+		int newReleaseDaysPenalty = 0;
+		int newReleaseDailyPrice = 3;
+		amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
+				newReleaseDailyPrice);
+		return amountToAdd;
+	}
+
+	private double computeAmountRegular(int daysRented) {
+		double amountToAdd;
+		int regularBasePrice = 2;
+		int regularDaysPenalty = 2;
+		double regularDailyPrice = 1.5;
+		amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
+				regularDailyPrice);
+		return amountToAdd;
+	}
+
 	private static double computeAmount(int daysRented, double regularBasePrice, int regularDaysPenalty, double regularDailyPrice) {
 			double regularAmountToAdd = regularBasePrice;
 			if (daysRented > regularDaysPenalty) {
