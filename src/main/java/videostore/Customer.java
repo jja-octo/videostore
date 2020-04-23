@@ -26,8 +26,8 @@ public class Customer
 		
 		for(var rental : rentals) {
 			double 		thisAmount = 0;
-			
-			thisAmount += rentalAmount(rental);
+
+			thisAmount += rental.amount();
 			
 			frequentRenterPoints++;
 			
@@ -47,44 +47,6 @@ public class Customer
 		
 		return result;
 	}
-
-	private double rentalAmount(Rental rental) {
-		double amountToAdd = 0;
-		int daysRented = rental.getDaysRented();
-		switch (rental.getMovie ().getPricing()) {
-			case REGULAR:
-				int regularBasePrice = 2;
-				int regularDaysPenalty = 2;
-				double regularDailyPrice = 1.5;
-				amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
-						regularDailyPrice);
-				break;
-			case NEW_RELEASE:
-				double newReleaseBasePrice = 0;
-				int newReleaseDaysPenalty = 0;
-				int newReleaseDailyPrice = 3;
-				amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
-						newReleaseDailyPrice);
-				break;
-			case CHILDREN:
-				double childrenBasePrice = 1.5;
-				int childrenDaysPenalty = 3;
-				double childrenDailyPrice = 1.5;
-				amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
-						childrenDailyPrice);
-				break;
-		}
-		return amountToAdd;
-	}
-
-	private double computeAmount(int daysRented, double regularBasePrice, int regularDaysPenalty, double regularDailyPrice) {
-		double regularAmountToAdd = regularBasePrice;
-		if (daysRented > regularDaysPenalty) {
-			regularAmountToAdd += (daysRented - regularDaysPenalty) * regularDailyPrice;
-		}
-		return regularAmountToAdd;
-	}
-
 
 	private String name;
 	private Collection<Rental> rentals = new LinkedList<>();
