@@ -12,11 +12,7 @@ public class Customer
 	public void addRental (Rental rental) {
 		rentals.add(rental);
 	}
-	
-	public String getName () {
-		return name;
-	}
-	
+
 	public String statement () {
 		var frequentRenterPoints = rentals.stream()
 				.mapToInt(Rental::frequentRenterPoints)
