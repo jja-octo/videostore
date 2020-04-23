@@ -3,7 +3,7 @@ package videostore;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static videostore.Movie.Pricing.REGULAR;
+import static videostore.Pricing.REGULAR;
 
 public class VideoStoreTest {
     final Customer customer = new Customer("Fred");

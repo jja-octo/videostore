@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-import static videostore.Movie.Pricing.*;
+import static videostore.Pricing.*;
 
 public class GoldenMasterGenerator {
     private static final Path GOLDEN_MASTER_FILE_PATH = Paths.get("./src/test/resources/goldenmaster.txt");

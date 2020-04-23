@@ -3,7 +3,7 @@ package videostore;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static videostore.Movie.Pricing.NEW_RELEASE;
+import static videostore.Pricing.NEW_RELEASE;
 
 public class Customer 
 {
