@@ -25,9 +25,7 @@ public class Customer
 		String 				result 					= "Rental Record for " + getName () + "\n";
 		
 		for(var rental : rentals) {
-			double 		thisAmount = 0;
-
-			thisAmount += rental.amount();
+			double thisAmount = rental.amount();
 			
 			frequentRenterPoints++;
 			
@@ -36,13 +34,12 @@ public class Customer
 				frequentRenterPoints++;
 				
 			result += "\t" + rental.getMovie ().getTitle () + "\t"
-								+ String.valueOf (thisAmount) + "\n";
+								+ thisAmount + "\n";
 			totalAmount += thisAmount;
-				
 		}
 		
-		result += "You owed " + String.valueOf (totalAmount) + "\n";
-		result += "You earned " + String.valueOf (frequentRenterPoints) + " frequent renter points\n";
+		result += "You owed " + totalAmount + "\n";
+		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
 		
 		
 		return result;
