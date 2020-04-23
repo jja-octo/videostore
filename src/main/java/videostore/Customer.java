@@ -29,29 +29,31 @@ public class Customer
 			
 			// determines the amount for each line
 			int daysRented = each.getDaysRented();
+			double amountToAdd = 0;
 			switch (each.getMovie ().getPricing()) {
 				case REGULAR:
 					int regularBasePrice = 2;
 					int regularDaysPenalty = 2;
 					double regularDailyPrice = 1.5;
-					thisAmount += computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
+					amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
 							regularDailyPrice);
 					break;
 				case NEW_RELEASE:
 					double newReleaseBasePrice = 0;
 					int newReleaseDaysPenalty = 0;
 					int newReleaseDailyPrice = 3;
-					thisAmount += computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
+					amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
 							newReleaseDailyPrice);
 					break;
 				case CHILDREN:
 					double childrenBasePrice = 1.5;
 					int childrenDaysPenalty = 3;
 					double childrenDailyPrice = 1.5;
-					thisAmount += computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
+					amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
 							childrenDailyPrice);
 					break;
 			}
+			thisAmount += amountToAdd;
 			
 			frequentRenterPoints++;
 			
