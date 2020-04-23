@@ -24,18 +24,18 @@ public class Customer
 		int					frequentRenterPoints 	= 0;
 		String 				result 					= "Rental Record for " + getName () + "\n";
 		
-		for(var each : rentals) {
+		for(var rental : rentals) {
 			double 		thisAmount = 0;
 			
-			thisAmount += rentalAmount(each);
+			thisAmount += rentalAmount(rental);
 			
 			frequentRenterPoints++;
 			
-			if (each.getMovie ().getPricing() == NEW_RELEASE 
-					&& each.getDaysRented() > 1)
+			if (rental.getMovie ().getPricing() == NEW_RELEASE 
+					&& rental.getDaysRented() > 1)
 				frequentRenterPoints++;
 				
-			result += "\t" + each.getMovie ().getTitle () + "\t"
+			result += "\t" + rental.getMovie ().getTitle () + "\t"
 								+ String.valueOf (thisAmount) + "\n";
 			totalAmount += thisAmount;
 				
@@ -48,10 +48,10 @@ public class Customer
 		return result;
 	}
 
-	private double rentalAmount(Rental each) {
+	private double rentalAmount(Rental rental) {
 		double amountToAdd = 0;
-		int daysRented = each.getDaysRented();
-		switch (each.getMovie ().getPricing()) {
+		int daysRented = rental.getDaysRented();
+		switch (rental.getMovie ().getPricing()) {
 			case REGULAR:
 				int regularBasePrice = 2;
 				int regularDaysPenalty = 2;
@@ -78,8 +78,7 @@ public class Customer
 	}
 
 	private double computeAmount(int daysRented, double regularBasePrice, int regularDaysPenalty, double regularDailyPrice) {
-		double regularAmountToAdd = 0;
-		regularAmountToAdd += regularBasePrice;
+		double regularAmountToAdd = regularBasePrice;
 		if (daysRented > regularDaysPenalty) {
 			regularAmountToAdd += (daysRented - regularDaysPenalty) * regularDailyPrice;
 		}
