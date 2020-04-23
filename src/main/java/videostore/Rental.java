@@ -16,7 +16,7 @@ public class Rental
 	}
 	
 	public double amount() {
-		return getMovie().getPricing().computeAmount(getDaysRented());
+		return getMovie().getPricing().rentalAmount(getDaysRented());
 	}
 	
 	private Movie movie;

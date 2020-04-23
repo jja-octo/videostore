@@ -18,7 +18,7 @@ public enum Pricing {
         this.dailyPrice = dailyPrice;
     }
 
-    public double computeAmount(int daysRented) {
+    public double rentalAmount(int daysRented) {
         double regularAmountToAdd = basePrice;
         if (daysRented > daysPenalty) {
             regularAmountToAdd += (daysRented - daysPenalty) * dailyPrice;
