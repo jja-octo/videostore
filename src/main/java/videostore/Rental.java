@@ -7,7 +7,7 @@ public class Rental
 	public Rental (Movie movie, int daysRented) {
 		this.movie 		= movie;
 		this.daysRented = daysRented;
-		this.amount = getMovie().getPricing().rentalAmount(getDaysRented());
+		this.amount = getPricing().rentalAmount(getDaysRented());
 	}
 
 	public int getDaysRented () {
@@ -24,13 +24,20 @@ public class Rental
 	
 	public int frequentRenterPoints() {
 		int renterPoints;
-		if (this.getMovie ().getPricing() == NEW_RELEASE
-							&& this.getDaysRented() > 1) {
+		if (isNewRelease() && getDaysRented() > 1) {
 			renterPoints = 2;
 		} else {
 			renterPoints = 1;
 		}
 		return renterPoints;
+	}
+
+	private boolean isNewRelease() {
+		return getPricing() == NEW_RELEASE;
+	}
+
+	private Pricing getPricing() {
+		return this.getMovie().getPricing();
 	}
 
 	private final double amount;
