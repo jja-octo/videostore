@@ -5,7 +5,7 @@ public class Movie
     public enum Pricing {
         REGULAR(0),
         NEW_RELEASE(1),
-        CHILDRENS(2),
+        CHILDREN(2),
         ;
 
         private final int code;

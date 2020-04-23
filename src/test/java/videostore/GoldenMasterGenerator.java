@@ -28,7 +28,7 @@ public class GoldenMasterGenerator {
 
     public String testedClassOutput() {
         var customer = new Customer("Fred");
-        List.of(REGULAR, NEW_RELEASE, CHILDRENS).forEach(pricing -> {
+        List.of(REGULAR, NEW_RELEASE, CHILDREN).forEach(pricing -> {
             var movie = new Movie("2001: A Space Odyssey " + pricing.code(), pricing);
             for (var daysRented = 0; daysRented < 10; daysRented++) {
                 customer.addRental(new Rental(movie, daysRented));

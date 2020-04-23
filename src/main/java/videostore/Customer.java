@@ -37,7 +37,7 @@ public class Customer
 				case NEW_RELEASE:
 					thisAmount += each.getDaysRented () * 3;
 					break;
-				case CHILDRENS:
+				case CHILDREN:
 					thisAmount += 1.5;
 					if (each.getDaysRented () > 3)
 						thisAmount += (each.getDaysRented () - 3) * 1.5;
