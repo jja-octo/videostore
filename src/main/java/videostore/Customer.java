@@ -3,8 +3,6 @@ package videostore;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static videostore.Pricing.NEW_RELEASE;
-
 public class Customer 
 {
 	public Customer (String name) {
@@ -21,14 +19,7 @@ public class Customer
 	
 	public String statement () {
 		var frequentRenterPoints = rentals.stream()
-				.mapToInt(rental -> {
-					if (rental.getMovie().getPricing() == NEW_RELEASE
-							&& rental.getDaysRented() > 1) {
-						return 2;
-					} else {
-						return 1;
-					}
-				})
+				.mapToInt(Rental::frequentRenterPoints)
 				.sum();
 
 		double totalAmount = rentals.stream()
