@@ -26,20 +26,9 @@ public class Customer
 				.mapToDouble(Rental::amount)
 				.sum();
 
-		return formattedStatement(frequentRenterPoints, totalAmount);
+		return new StatementFormatter().format(rentals, name, frequentRenterPoints, totalAmount);
 	}
 
-	private String formattedStatement(int frequentRenterPoints, double totalAmount) {
-		var statement = new StringBuilder("Rental Record for " + getName() + "\n");
-		statement.append( rentals.stream()
-				.map(rental -> "\t" + rental.getMovie ().getTitle () + "\t"
-						+ rental.amount() + "\n")
-				.reduce("", (a,b) -> a + b) );
-
-		statement.append("You owed " + totalAmount + "\n");
-		statement.append("You earned " + frequentRenterPoints + " frequent renter points\n");
-		return statement.toString();
-	}
 
 	private String name;
 	private Collection<Rental> rentals = new LinkedList<>();
