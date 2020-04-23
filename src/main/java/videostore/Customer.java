@@ -27,38 +27,12 @@ public class Customer
 		for(var each : rentals) {
 			double 		thisAmount = 0;
 			
-			// determines the amount for each line
-			int daysRented = each.getDaysRented();
-			double amountToAdd = 0;
-			switch (each.getMovie ().getPricing()) {
-				case REGULAR:
-					int regularBasePrice = 2;
-					int regularDaysPenalty = 2;
-					double regularDailyPrice = 1.5;
-					amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
-							regularDailyPrice);
-					break;
-				case NEW_RELEASE:
-					double newReleaseBasePrice = 0;
-					int newReleaseDaysPenalty = 0;
-					int newReleaseDailyPrice = 3;
-					amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
-							newReleaseDailyPrice);
-					break;
-				case CHILDREN:
-					double childrenBasePrice = 1.5;
-					int childrenDaysPenalty = 3;
-					double childrenDailyPrice = 1.5;
-					amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
-							childrenDailyPrice);
-					break;
-			}
-			thisAmount += amountToAdd;
+			thisAmount += rentalAmount(each);
 			
 			frequentRenterPoints++;
 			
 			if (each.getMovie ().getPricing() == NEW_RELEASE 
-					&& daysRented > 1)
+					&& each.getDaysRented() > 1)
 				frequentRenterPoints++;
 				
 			result += "\t" + each.getMovie ().getTitle () + "\t"
@@ -72,6 +46,35 @@ public class Customer
 		
 		
 		return result;
+	}
+
+	private double rentalAmount(Rental each) {
+		double amountToAdd = 0;
+		int daysRented = each.getDaysRented();
+		switch (each.getMovie ().getPricing()) {
+			case REGULAR:
+				int regularBasePrice = 2;
+				int regularDaysPenalty = 2;
+				double regularDailyPrice = 1.5;
+				amountToAdd = computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
+						regularDailyPrice);
+				break;
+			case NEW_RELEASE:
+				double newReleaseBasePrice = 0;
+				int newReleaseDaysPenalty = 0;
+				int newReleaseDailyPrice = 3;
+				amountToAdd = computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
+						newReleaseDailyPrice);
+				break;
+			case CHILDREN:
+				double childrenBasePrice = 1.5;
+				int childrenDaysPenalty = 3;
+				double childrenDailyPrice = 1.5;
+				amountToAdd = computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
+						childrenDailyPrice);
+				break;
+		}
+		return amountToAdd;
 	}
 
 	private double computeAmount(int daysRented, double regularBasePrice, int regularDaysPenalty, double regularDailyPrice) {
