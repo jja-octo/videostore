@@ -20,12 +20,16 @@ public class Customer
 	}
 	
 	public String statement () {
-		int frequentRenterPoints = 0;
-		for(var rental : rentals) {
-			frequentRenterPoints+=1;
-			if (rental.getMovie ().getPricing() == NEW_RELEASE
-					&& rental.getDaysRented() > 1) {frequentRenterPoints+=1;}
-		}
+		var frequentRenterPoints = rentals.stream()
+				.mapToInt(rental -> {
+					if (rental.getMovie().getPricing() == NEW_RELEASE
+							&& rental.getDaysRented() > 1) {
+						return 2;
+					} else {
+						return 1;
+					}
+				})
+				.sum();
 
 		double totalAmount = rentals.stream()
 				.map(Rental::amount)
