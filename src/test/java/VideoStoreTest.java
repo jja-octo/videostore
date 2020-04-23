@@ -16,7 +16,7 @@ public class VideoStoreTest {
                 "You owed 6.5\n" +
                 "You earned 1 frequent renter points\n");
     }
-    
+
     @Test
     void twoRentalsOneMovie() {
         Movie movie = new Movie("2001: A Space Odyssey", Movie.REGULAR);
