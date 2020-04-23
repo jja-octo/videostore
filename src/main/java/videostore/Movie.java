@@ -29,12 +29,8 @@ public class Movie
 	public Pricing getPricing() {
 		return pricing;
 	}
-	
-	public void setPricing(Pricing code) {
-		pricing = code;
-	}
-	
-	public String getTitle () {
+
+    public String getTitle () {
 		return title;
 	}
 	
