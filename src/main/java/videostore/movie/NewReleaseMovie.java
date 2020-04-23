@@ -8,6 +8,11 @@ public class NewReleaseMovie extends Movie {
     }
 
     @Override
+    public double rentalAmount(int daysRented) {
+        return pricing.rentalAmount(daysRented);
+    }
+    
+    @Override
     public int frequentRenterPoints(int daysRented) {
         return daysRented > 1 ? 2 : 1;
     }

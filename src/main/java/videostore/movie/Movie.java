@@ -5,7 +5,7 @@ import videostore.Pricing;
 public abstract class Movie
 {
     private final String title;
-	private final Pricing pricing;
+    final Pricing pricing;
 	
 	Movie (String title, Pricing pricing) {
 		this.title 		= title;
@@ -25,9 +25,7 @@ public abstract class Movie
 		}
 	}
 
-	public double rentalAmount(int daysRented) {
-		return pricing.rentalAmount(daysRented);
-	}
+	public abstract double rentalAmount(int daysRented);
 	
 	public abstract int frequentRenterPoints(int daysRented);
 
