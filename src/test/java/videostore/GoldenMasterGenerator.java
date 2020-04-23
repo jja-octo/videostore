@@ -10,7 +10,21 @@ import java.util.stream.IntStream;
 public class GoldenMasterGenerator {
     private static final Path GOLDEN_MASTER_FILE_PATH = Paths.get("./src/test/resources/goldenmaster.txt");
 
-    public String goldenMasterData() {
+    public static void main(String[] args) {
+        saveGoldenMasterDataToFile();
+    }
+
+    private static void saveGoldenMasterDataToFile() {
+        var goldenMaster = new GoldenMasterGenerator();
+        String result = goldenMaster.testedClassOutput();
+        try {
+            goldenMaster.saveToFile(result);
+        } catch (IOException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public String testedClassOutput() {
         var customer = new Customer("Fred");
         IntStream.of(0, 1, 2).forEach(priceCode -> {
             var movie = new Movie("2001: A Space Odyssey " + priceCode, priceCode);
@@ -22,11 +36,11 @@ public class GoldenMasterGenerator {
         return customer.statement();
     }
 
-    public String readGoldenMasterFile() throws IOException {
+    public String fileContents() throws IOException {
         return Files.readString(GOLDEN_MASTER_FILE_PATH);
     }
 
-    public void writeGoldenMasterFile(String result) throws IOException {
+    public void saveToFile(String result) throws IOException {
         Files.deleteIfExists(GOLDEN_MASTER_FILE_PATH);
         Files.writeString(GOLDEN_MASTER_FILE_PATH, result, StandardOpenOption.CREATE_NEW);
     }
