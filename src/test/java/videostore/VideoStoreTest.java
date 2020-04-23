@@ -2,16 +2,16 @@ package videostore;
 
 import org.junit.jupiter.api.Test;
 import videostore.movie.Movie;
+import videostore.movie.RegularMovie;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static videostore.Pricing.REGULAR;
 
 public class VideoStoreTest {
     final Customer customer = new Customer("Fred");
 
     @Test
     void oneRentalOneRegularMovie() {
-        Movie movie = new Movie("2001: A Space Odyssey", REGULAR);
+        Movie movie = new RegularMovie("2001: A Space Odyssey");
         int daysRented = 5;
         customer.addRental(new Rental(movie, daysRented));
 
@@ -23,7 +23,7 @@ public class VideoStoreTest {
 
     @Test
     void twoRentalsOneMovie() {
-        Movie movie = new Movie("2001: A Space Odyssey", REGULAR);
+        Movie movie = new RegularMovie("2001: A Space Odyssey");
         customer.addRental(new Rental(movie, 5));
         customer.addRental(new Rental(movie, 7));
 

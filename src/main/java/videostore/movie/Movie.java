@@ -2,17 +2,29 @@ package videostore.movie;
 
 import videostore.Pricing;
 
-public class Movie
+public abstract class Movie
 {
-
     private final String title;
 	private final Pricing pricing;
 	
-	public Movie (String title, Pricing pricing) {
+	Movie (String title, Pricing pricing) {
 		this.title 		= title;
 		this.pricing = pricing;
 	}
-	
+
+	public static Movie build(String title, Pricing pricing) {
+		switch (pricing) {
+			case REGULAR:
+				return new RegularMovie(title);
+			case NEW_RELEASE:
+				return new NewReleaseMovie(title);
+			case CHILDREN:
+				return new ChildrenMovie(title);
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
+
 	public Pricing getPricing() {
 		return pricing;
 	}

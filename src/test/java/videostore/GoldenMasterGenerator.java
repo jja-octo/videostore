@@ -1,6 +1,7 @@
 package videostore;
 
 import videostore.movie.Movie;
+import videostore.movie.RegularMovie;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,7 +32,7 @@ public class GoldenMasterGenerator {
     public String testedClassOutput() {
         var customer = new Customer("Fred");
         List.of(REGULAR, NEW_RELEASE, CHILDREN).forEach(pricing -> {
-            var movie = new Movie("2001: A Space Odyssey " + pricing.code(), pricing);
+            var movie = Movie.build("2001: A Space Odyssey " + pricing.code(), pricing);
             for (var daysRented = 0; daysRented < 10; daysRented++) {
                 customer.addRental(new Rental(movie, daysRented));
             }
@@ -39,7 +40,7 @@ public class GoldenMasterGenerator {
 
         return customer.statement();
     }
-
+    
     public String fileContents() throws IOException {
         return Files.readString(GOLDEN_MASTER_FILE_PATH);
     }
