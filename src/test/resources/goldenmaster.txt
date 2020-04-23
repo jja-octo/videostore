@@ -31,3 +31,6 @@ Rental Record for Fred
 	2001: A Space Odyssey 2	10.5
 You owed 243.5
 You earned 38 frequent renter points
+ints
+ou owed 226.0
+You earned 38 frequent renter points
