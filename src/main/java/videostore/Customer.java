@@ -22,7 +22,7 @@ public class Customer
 				.mapToInt(Rental::frequentRenterPoints)
 				.sum();
 
-		double totalAmount = rentals.stream()
+		var totalAmount = rentals.stream()
 				.mapToDouble(Rental::amount)
 				.sum();
 
