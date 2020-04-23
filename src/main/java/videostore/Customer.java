@@ -28,26 +28,35 @@ public class Customer
 			double 		thisAmount = 0;
 			
 			// determines the amount for each line
+			int daysRented = each.getDaysRented();
 			switch (each.getMovie ().getPricing()) {
 				case REGULAR:
-					thisAmount += 2;
-					if (each.getDaysRented () > 2)
-						thisAmount += (each.getDaysRented () - 2) * 1.5;
+					int regularBasePrice = 2;
+					int regularDaysPenalty = 2;
+					double regularDailyPrice = 1.5;
+					thisAmount += computeAmount(daysRented, regularBasePrice, regularDaysPenalty,
+							regularDailyPrice);
 					break;
 				case NEW_RELEASE:
-					thisAmount += each.getDaysRented () * 3;
+					double newReleaseBasePrice = 0;
+					int newReleaseDaysPenalty = 0;
+					int newReleaseDailyPrice = 3;
+					thisAmount += computeAmount(daysRented, newReleaseBasePrice, newReleaseDaysPenalty,
+							newReleaseDailyPrice);
 					break;
 				case CHILDREN:
-					thisAmount += 1.5;
-					if (each.getDaysRented () > 3)
-						thisAmount += (each.getDaysRented () - 3) * 1.5;
+					double childrenBasePrice = 1.5;
+					int childrenDaysPenalty = 3;
+					double childrenDailyPrice = 1.5;
+					thisAmount += computeAmount(daysRented, childrenBasePrice, childrenDaysPenalty,
+							childrenDailyPrice);
 					break;
 			}
 			
 			frequentRenterPoints++;
 			
 			if (each.getMovie ().getPricing() == NEW_RELEASE 
-					&& each.getDaysRented () > 1)
+					&& daysRented > 1)
 				frequentRenterPoints++;
 				
 			result += "\t" + each.getMovie ().getTitle () + "\t"
@@ -62,7 +71,16 @@ public class Customer
 		
 		return result;
 	}
-	
+
+	private double computeAmount(int daysRented, double regularBasePrice, int regularDaysPenalty, double regularDailyPrice) {
+		double regularAmountToAdd = 0;
+		regularAmountToAdd += regularBasePrice;
+		if (daysRented > regularDaysPenalty) {
+			regularAmountToAdd += (daysRented - regularDaysPenalty) * regularDailyPrice;
+		}
+		return regularAmountToAdd;
+	}
+
 
 	private String name;
 	private Collection<Rental> rentals = new LinkedList<>();
