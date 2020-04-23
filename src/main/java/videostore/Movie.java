@@ -18,8 +18,8 @@ public class Movie
         }
     } 
 	
-	private String title;
-	private Pricing pricing;
+	private final String title;
+	private final Pricing pricing;
 	
 	public Movie (String title, Pricing pricing) {
 		this.title 		= title;
