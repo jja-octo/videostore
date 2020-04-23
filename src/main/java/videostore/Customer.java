@@ -26,8 +26,7 @@ public class Customer
 		for(var rental : rentals) {
 			double thisAmount = rental.amount();
 
-			result.append("\t" + rental.getMovie ().getTitle () + "\t"
-					+ thisAmount + "\n");
+			result.append("\t").append(rental.getMovie().getTitle()).append("\t").append(thisAmount).append("\n");
 
 			frequentRenterPoints+=1;
 			if (rental.getMovie ().getPricing() == NEW_RELEASE
@@ -39,8 +38,8 @@ public class Customer
 				.map(Rental::amount)
 				.reduce(0.0, Double::sum);
 		
-		result.append("You owed " + totalAmount + "\n");
-		result.append("You earned " + frequentRenterPoints + " frequent renter points\n");
+		result.append("You owed ").append(totalAmount).append("\n");
+		result.append("You earned ").append(frequentRenterPoints).append(" frequent renter points\n");
 		
 		
 		return result.toString();
