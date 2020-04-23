@@ -1,5 +1,7 @@
 package videostore;
 
+import videostore.movie.Movie;
+
 import static videostore.Pricing.NEW_RELEASE;
 
 public class Rental

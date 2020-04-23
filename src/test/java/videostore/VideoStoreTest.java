@@ -1,6 +1,7 @@
 package videostore;
 
 import org.junit.jupiter.api.Test;
+import videostore.movie.Movie;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static videostore.Pricing.REGULAR;

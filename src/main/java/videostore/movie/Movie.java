@@ -1,4 +1,6 @@
-package videostore;
+package videostore.movie;
+
+import videostore.Pricing;
 
 public class Movie
 {
